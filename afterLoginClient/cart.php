@@ -90,9 +90,9 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
                                     $ligneProd = $stmtGetProd->fetch(PDO::FETCH_ASSOC);
 
-                                   
 
-                                    $cltStmt = $conn->prepare( "select * from client where idClt = {$_GET['idClt']}");
+
+                                    $cltStmt = $conn->prepare("select * from client where idClt = {$_GET['idClt']}");
                                     $cltStmt->execute();
                                     $cltTotal = $cltStmt->fetch(PDO::FETCH_ASSOC);
 
@@ -104,13 +104,18 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
                                         <td><?php echo "{$ligneProd['nom_prod']}" ?></td>
                                         <td><?php echo "{$ligneProd['prix_prod']}" ?>MAD</td>
                                         <td>
-                                            <?php echo "{$ligneProd['quantity']}" ?>
-                                            <div class="icon">
-                                                <?php echo "<a href='decreaseQuantityCart.php?did=" . $ligne['idProd'] . "&idClt=" . $_GET['idClt'] . "&idCmd=" . $ligne['idCmd'] . "'><i class='fa fa-minus' aria-hidden='true' style='color: #3f60f3;'></i></a>" ?>
-                                            </div>
-                                            <div class="icon">
-                                                <?php echo "<a href='addQuantityCart.php?did=" . $ligne['idProd'] . "&idClt=" . $_GET['idClt'] . "&idCmd=" . $ligne['idCmd'] . "'><i class='fa fa-plus' aria-hidden='true' style='color: #3f60f3;'></i></a>" ?>
-                                            </div>
+                                            <?php
+                                            $iniPrice = $ligneProd['quantity'] * $ligneProd['prix_prod'];
+                                            ?>
+                                            <form action="crudCartUpdate.php" method="GET">
+                                                <input type="text" hidden name="quan" value="<?php echo "{$ligneProd['quantity']}" ?>">
+                                                <input type="text" hidden name="idClt" value="<?php echo $ligne['idClt'] ?>">
+                                                <input type="text" hidden name="prix" value="<?php echo $ligneProd['prix_prod'] ?>">
+                                                <input type="text" hidden name="idCmd" value="<?php echo $ligne['idCmd'] ?>">
+                                                <input type="text" hidden name="did" value="<?php echo $ligne['idProd'] ?>">
+                                                <input type="number" min="1" name="quant" placeholder="<?php echo "{$ligneProd['quantity']}" ?>" placeholder="<?php echo "{$ligneProd['quantity']}"; ?>">
+                                                <input type="submit" value="+">
+                                            </form>
                                         </td>
                                         <td>
                                             <div class="icon">
@@ -123,26 +128,25 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
                         </table>
                         <div class="d-flex justify-content-end">
                             <h5>Total: <span class="price text-success">
-                                <?php if ( isset($cltTotal['Total'])) {
-                                    echo "{$cltTotal['Total']}";   
-                                   } else echo 0; 
-                                
-                                   $disClt = $conn->prepare("select min(idClt) from discount where idClt={$_GET['idClt']}");
-                                   $disClt->execute();
-                                   $tmp = $disClt->fetch(PDO::FETCH_ASSOC);
-                                   
-                                ?>
+                                    <?php if (isset($cltTotal['Total'])) {
+                                        echo "{$cltTotal['Total']}";
+                                    } else echo 0;
 
-                                    <?php if ( isset($cltTotal['Total']) && $cltTotal['Total'] >= 4000 && $_GET['idClt'] != $tmp['min(idClt)']) { 
-                                            $sql = "INSERT INTO discount(idClt) VALUES({$_GET['idClt']})";
-                                            $conn->exec($sql);
-                                        
-                                        ?>
+                                    $disClt = $conn->prepare("select min(idClt) from discount where idClt={$_GET['idClt']}");
+                                    $disClt->execute();
+                                    $tmp = $disClt->fetch(PDO::FETCH_ASSOC);
+
+                                    ?>
+
+                                    <?php if (isset($cltTotal['Total']) && $cltTotal['Total'] >= 4000 && $_GET['idClt'] != $tmp['min(idClt)']) {
+                                        $sql = "INSERT INTO discount(idClt) VALUES({$_GET['idClt']})";
+                                        $conn->exec($sql);
+
+                                    ?>
                                         <script>
                                             if (confirm("play and get a discount!") == true) {
                                                 window.location.href = '../matchingJs/index.php?idClt=' + <?php echo json_encode($_GET['idClt']); ?>
                                             }
-                                            
                                         </script>
                                     <?php } ?>
                                 </span></h5>
@@ -160,6 +164,10 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
                         <script>
                             // Render the PayPal button into #paypal-button-container
                             paypal.Buttons({
+
+                                style: {
+                                    layout: 'horizontal'
+                                },
 
                                 // Set up the transaction
                                 createOrder: function(data, actions) {
@@ -179,6 +187,8 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
                                         console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                                         var transaction = orderData.purchase_units[0].payments.captures[0];
                                         alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+
+                                        window.location = '<?php echo "payment.php?idClt=" . $_GET['idClt'] ."&Total=" . $cltTotal['Total'] ?>'
 
                                         // Replace the above to show a success message within this page, e.g.
                                         // const element = document.getElementById('paypal-button-container');

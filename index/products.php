@@ -66,11 +66,7 @@ https://templatemo.com/tm-546-sixteen-clothing
             <li class="nav-item">
               <a class="nav-link" href="contact.php">Contact Us</a>
             </li>
-            <li class="nav-item">
-              <div class="icon" style="margin-top: 13px;">
-                <a href="cart.php"><i class="fa fa-shopping-cart fa-lg" style="color: #3f60f3;"></i></a>
-              </div>
-            </li>
+            
             <li class="nav-item">
               <a class="nav-link" href="RegisterClient.php">Register</a>
             </li>
@@ -144,13 +140,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                       <h6>MAD <?php echo "{$ligne['prix_prod']}" ?></h6>
                       <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
-                      <div class="icon">
-                        <?php
-
-                        echo "<a href='addToCart.php?idProd=" . $ligne['id_prod'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                        ?>
-                      </div>
+                      
 
 
                     </div>
@@ -187,13 +177,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                       <h6>MAD <?php echo "{$ligne['prix_prod']}" ?></h6>
                       <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
-                      <div class="icon">
-                        <?php
-
-                        echo "<a href='addToCart.php?idProd=" . $ligne['id_prod'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                        ?>
-                      </div>
+                      
 
 
                     </div>
@@ -229,13 +213,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                       <h6>MAD <?php echo "{$ligne['prix_prod']}" ?></h6>
                       <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
-                      <div class="icon">
-                        <?php
-
-                        echo "<a href='addToCart.php?idProd=" . $ligne['id_prod'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                        ?>
-                      </div>
+                      
 
                     </div>
                   </div>
@@ -273,13 +251,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                       <h6>MAD <?php echo "{$ligne['prix_prod']}" ?></h6>
                       <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
-                      <div class="icon">
-                        <?php
-
-                        echo "<a href='addToCart.php?idProd=" . $ligne['id_prod'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                        ?>
-                      </div>
+                      
 
                     </div>
                   </div>
@@ -317,14 +289,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                       <h6>MAD <?php echo "{$ligne['prix_prod']}" ?></h6>
                       <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
-                      <div class="icon">
-                        <?php
-
-                        echo "<a href='addToCart.php?idProd=" . $ligne['id_prod'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                        ?>
-                      </div>
-
+                      
                     </div>
                   </div>
                 </div>
@@ -361,13 +326,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                       <h6>MAD <?php echo "{$ligne['prix_prod']}" ?></h6>
                       <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
-                      <div class="icon">
-                        <?php
-
-                        echo "<a href='addToCart.php?idProd=" . $ligne['id_prod'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                        ?>
-                      </div>
+                      
 
                     </div>
                   </div>
@@ -397,13 +356,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                       <h6>MAD <?php echo "{$ligne['prix_prod']}" ?></h6>
                       <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
-                      <div class="icon">
-                        <?php
-
-                        echo "<a href='addToCart.php?idProd=" . $ligne['id_prod'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                        ?>
-                      </div>
+                      
 
                     </div>
                   </div>

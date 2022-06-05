@@ -1,9 +1,9 @@
-<?php 
-    session_start();
-    if (!isset($_SESSION["logclt"])) {
-        header('Location: index/LoginClient.php');
-        exit;
-    }
+<?php
+session_start();
+if (!isset($_SESSION["logclt"])) {
+    header('Location: index/LoginClient.php');
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +48,7 @@
                 if (isset($_POST["submit"])) {
                     $str = $_POST["search"];
 
-                    $sth = $conn->prepare("SELECT * FROM produit WHERE nom_prod like '%$str%'");
+                    $sth = $conn->prepare("SELECT * FROM produit WHERE nom_prod like '%$str%' and stock=1");
 
                     $sth->execute();
 
@@ -66,11 +66,12 @@
                                     <h6>MAD <?php echo "{$ligne['prix_prod']}" ?></h6>
                                     <p><?php echo "{$ligne['desc_prod']}" ?></p>
                                     <div class="icon">
-                                        <?php
-
-                                        echo "<a href='afterLoginClient/addToCart.php?did=" . $ligne['id_prod'] . "&idClt=" . $_GET['idClt'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                                        ?>
+                                        <form action="afterLoginClient/crudCart.php" method="GET">
+                                            <input type="text" hidden name="idClt" value="<?php echo $_GET['idClt'] ?>">
+                                            <input type="text" hidden name="did" value="<?php echo $ligne['id_prod'] ?>">
+                                            <input type="number" min="1" name="quant" value="1" placeholder="1">
+                                            <input type="submit" value="+">
+                                        </form>
                                     </div>
 
                                 </div>

@@ -1,9 +1,9 @@
-<?php 
-    session_start();
-    if (!isset($_SESSION["logclt"])) {
-        header('Location: ../index/LoginClient.php');
-        exit;
-    }
+<?php
+session_start();
+if (!isset($_SESSION["logclt"])) {
+    header('Location: ../index/LoginClient.php');
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -148,11 +148,12 @@ https://templatemo.com/tm-546-sixteen-clothing
                                             <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
                                             <div class="icon">
-                                                <?php
-
-                                                echo "<a href='addToCart.php?did=" . $ligne['id_prod'] . "&idClt=" . $_GET['idClt'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                                                ?>
+                                                <form action="crudCart.php" method="GET">
+                                                    <input type="text" hidden name="idClt" value="<?php echo $_GET['idClt'] ?>">
+                                                    <input type="text" hidden name="did" value="<?php echo $ligne['id_prod'] ?>">
+                                                    <input type="number" min="1" name="quant" value="1" placeholder="1">
+                                                    <input type="submit" value="+">
+                                                </form>
                                             </div>
 
                                         </div>
@@ -190,11 +191,12 @@ https://templatemo.com/tm-546-sixteen-clothing
                                             <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
                                             <div class="icon">
-                                                <?php
-
-                                                echo "<a href='addToCart.php?did=" . $ligne['id_prod'] . "&idClt=" . $_GET['idClt'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                                                ?>
+                                                <form action="crudCart.php" method="GET">
+                                                    <input type="text" hidden name="idClt" value="<?php echo $_GET['idClt'] ?>">
+                                                    <input type="text" hidden name="did" value="<?php echo $ligne['id_prod'] ?>">
+                                                    <input type="number" min="1" name="quant" value="1" placeholder="1">
+                                                    <input type="submit" value="+">
+                                                </form>
                                             </div>
 
                                         </div>
@@ -231,11 +233,12 @@ https://templatemo.com/tm-546-sixteen-clothing
                                             <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
                                             <div class="icon">
-                                                <?php
-
-                                                echo "<a href='addToCart.php?did=" . $ligne['id_prod'] . "&idClt=" . $_GET['idClt'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                                                ?>
+                                                <form action="crudCart.php" method="GET">
+                                                    <input type="text" hidden name="idClt" value="<?php echo $_GET['idClt'] ?>">
+                                                    <input type="text" hidden name="did" value="<?php echo $ligne['id_prod'] ?>">
+                                                    <input type="number" min="1" name="quant" value="1" placeholder="1">
+                                                    <input type="submit" value="+">
+                                                </form>
                                             </div>
 
                                         </div>
@@ -275,11 +278,14 @@ https://templatemo.com/tm-546-sixteen-clothing
                                             <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
                                             <div class="icon">
-                                                <?php
-
-                                                echo "<a href='addToCart.php?did=" . $ligne['id_prod'] . "&idClt=" . $_GET['idClt'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                                                ?>
+                                                <div class="icon">
+                                                    <form action="crudCart.php" method="GET">
+                                                        <input type="text" hidden name="idClt" value="<?php echo $_GET['idClt'] ?>">
+                                                        <input type="text" hidden name="did" value="<?php echo $ligne['id_prod'] ?>">
+                                                        <input type="number" min="1" name="quant" value="1" placeholder="1">
+                                                        <input type="submit" value="+">
+                                                    </form>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -319,17 +325,19 @@ https://templatemo.com/tm-546-sixteen-clothing
                                             <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
                                             <div class="icon">
-                                                <?php
-
-                                                echo "<a href='addToCart.php?did=" . $ligne['id_prod'] . "&idClt=" . $_GET['idClt'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                                                ?>
+                                                <form action="crudCart.php" method="GET">
+                                                    <input type="text" hidden name="idClt" value="<?php echo $_GET['idClt'] ?>">
+                                                    <input type="text" hidden name="did" value="<?php echo $ligne['id_prod'] ?>">
+                                                    <input type="number" min="1" name="quant" value="1" placeholder="1">
+                                                    <input type="submit" value="+">
+                                                </form>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
                             <?php } ?>
+
 
 
 
@@ -359,11 +367,12 @@ https://templatemo.com/tm-546-sixteen-clothing
                                             <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
                                             <div class="icon">
-                                                <?php
-
-                                                echo "<a href='addToCart.php?did=" . $ligne['id_prod'] . "&idClt=" . $_GET['idClt'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                                                ?>
+                                                <form action="crudCart.php" method="GET">
+                                                    <input type="text" hidden name="idClt" value="<?php echo $_GET['idClt'] ?>">
+                                                    <input type="text" hidden name="did" value="<?php echo $ligne['id_prod'] ?>">
+                                                    <input type="number" min="1" name="quant" value="1" placeholder="1">
+                                                    <input type="submit" value="+">
+                                                </form>
                                             </div>
 
                                         </div>
@@ -395,11 +404,12 @@ https://templatemo.com/tm-546-sixteen-clothing
                                             <p><?php echo "{$ligne['desc_prod']}" ?></p>
 
                                             <div class="icon">
-                                                <?php
-
-                                                echo "<a href='addToCart.php?did=" . $ligne['id_prod'] . "&idClt=" . $_GET['idClt'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                                                ?>
+                                                <form action="crudCart.php" method="GET">
+                                                    <input type="text" hidden name="idClt" value="<?php echo $_GET['idClt'] ?>">
+                                                    <input type="text" hidden name="did" value="<?php echo $ligne['id_prod'] ?>">
+                                                    <input type="number" min="1" name="quant" value="1" placeholder="1">
+                                                    <input type="submit" value="+">
+                                                </form>
                                             </div>
 
                                         </div>
@@ -409,7 +419,7 @@ https://templatemo.com/tm-546-sixteen-clothing
 
 
 
-                            
+
                         </div>
 
                     </div>

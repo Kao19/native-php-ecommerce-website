@@ -190,15 +190,23 @@
         $passwdclt = $_POST['passc'];
 
 
-        $stmt1 = $conn->prepare("insert into client(nomClt,prenomClt,emailClt,addresseClt,numClt,passwdClt) values(?,?,?,?,?,?))");
+        $stmt = $conn->prepare("SELECT * FROM client WHERE emailClt=?");
+        //execute the statement
+        $stmt->execute([$eclt]);
+        //fetch result
+        $user = $stmt->fetch();
 
-        $stmt1->execute([$nclt, $prclt, $eclt, $addclt, $numclt, $passwdclt]);
-
-        if ($stmt1->execute != 0) {
-            echo "<script>window.location.href='LoginClient.php';</script>";
-        } else {
+        if ($user) {
             echo "<script>alert('email already exists')</script>";
+        } else {
+            
+            $stmt1 = $conn->prepare("insert into client(nomClt,prenomClt,emailClt,addresseClt,numClt,passwdClt) values(?,?,?,?,?,?)");
+
+            $stmt1->execute([$nclt, $prclt, $eclt, $addclt, $numclt, $passwdclt]);
+
+            echo "<script>window.location.href='LoginClient.php';</script>";
         }
+
     }
     ?>
 

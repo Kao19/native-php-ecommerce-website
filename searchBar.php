@@ -41,7 +41,7 @@
                 if (isset($_POST["submit"])) {
                     $str = $_POST["search"];
 
-                    $sth = $conn->prepare("SELECT * FROM produit WHERE nom_prod like '%$str%'");
+                    $sth = $conn->prepare("SELECT * FROM produit WHERE nom_prod like '%$str%' and stock=1");
 
                     $sth->execute();
 

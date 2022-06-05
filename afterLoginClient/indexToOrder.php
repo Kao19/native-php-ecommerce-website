@@ -5,14 +5,14 @@ if (!isset($_SESSION["logclt"])) {
     exit;
 }
 
-    include_once("../connect.php");
- 
+include_once("../connect.php");
 
-    $nameUser = $conn->prepare("SELECT nomClt, prenomClt FROM client where idClt=".$_GET['idClt']);
 
-    $nameUser->execute();
+$nameUser = $conn->prepare("SELECT nomClt, prenomClt FROM client where idClt=" . $_GET['idClt']);
 
-    $User = $nameUser->fetch(PDO::FETCH_ASSOC);
+$nameUser->execute();
+
+$User = $nameUser->fetch(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -138,30 +138,30 @@ if (!isset($_SESSION["logclt"])) {
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     <div class="banner header-text">
-    <div>
-        <img class="mySlides" src="../style/assets/images/s3.jpg" style="width:100%; height:700px;">
-        <img class="mySlides" src="../style/assets/images/si2.jpg" style="width:100%; height:700px;">
-        <img class="mySlides" src="../style/assets/images/si3.jpg" style="width:100%; height:700px;">
-      </div>
+        <div>
+            <img class="mySlides" src="../style/assets/images/s3.jpg" style="width:100%; height:700px;">
+            <img class="mySlides" src="../style/assets/images/si2.jpg" style="width:100%; height:700px;">
+            <img class="mySlides" src="../style/assets/images/si3.jpg" style="width:100%; height:700px;">
+        </div>
 
-      <script>
-        var myIndex = 0;
-        carousel();
+        <script>
+            var myIndex = 0;
+            carousel();
 
-        function carousel() {
-          var i;
-          var x = document.getElementsByClassName("mySlides");
-          for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-          }
-          myIndex++;
-          if (myIndex > x.length) {
-            myIndex = 1
-          }
-          x[myIndex - 1].style.display = "block";
-          setTimeout(carousel, 2000); // Change image every 2 seconds
-        }
-      </script>
+            function carousel() {
+                var i;
+                var x = document.getElementsByClassName("mySlides");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                myIndex++;
+                if (myIndex > x.length) {
+                    myIndex = 1
+                }
+                x[myIndex - 1].style.display = "block";
+                setTimeout(carousel, 2000); // Change image every 2 seconds
+            }
+        </script>
     </div>
     <!-- Banner Ends Here -->
 
@@ -199,11 +199,12 @@ if (!isset($_SESSION["logclt"])) {
                                 <h6>MAD <?php echo "{$ligne['prix_prod']}" ?></h6>
                                 <p><?php echo "{$ligne['desc_prod']}" ?></p>
                                 <div class="icon">
-                                    <?php
-
-                                    echo "<a href='addToCart.php?did=" . $ligne['id_prod'] . "&idClt=" . $_GET['idClt'] . "'><i class='fa fa-plus' aria-hidden='true'></i></a> add product to cart";
-
-                                    ?>
+                                    <form action="crudCart.php" method="GET">
+                                        <input type="text" hidden name="idClt" value="<?php echo $_GET['idClt'] ?>">
+                                        <input type="text" hidden name="did" value="<?php echo $ligne['id_prod'] ?>">
+                                        <input type="number" min="1" name="quant" value="1" placeholder="1">
+                                        <input type="submit" value="+">
+                                    </form>
                                 </div>
 
                             </div>

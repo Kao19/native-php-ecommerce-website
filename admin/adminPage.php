@@ -116,6 +116,8 @@ if (!isset($_SESSION["logAdmin"])) {
         <br><br>
         <button class="button" style="vertical-align:middle"><span><a href="dashboardProd.php" style="text-decoration: none; color:#f2f2f2;"> statistics of products </a></span></button>
         <br><br>
+        <button class="button" style="vertical-align:middle"><span><a href="dashbordArea.php" style="text-decoration: none; color:#f2f2f2;"> payments </a></span></button>
+        <br><br>
         <button class="button" style="vertical-align:middle"><span><a href="logoutAdmin.php" style="text-decoration: none; color:#f2f2f2;"> Logout </a></span></button>
         <br><br>
 
